@@ -48,7 +48,7 @@ T5 or Text-to-Text Transfer Transformer, is a Transformer based architecture tha
 
 2, replacing the fill-in-the-blank cloze task with a mix of alternative pre-training task
 
-![alt text](https://raw.githubusercontent.com/vivekalex61/summary_creator/tree/main/images/T5.png)
+![alt text](https://raw.githubusercontent.com/vivekalex61/summary_creator/tree/main/images/t5.jpg)
 
 #### Training
 

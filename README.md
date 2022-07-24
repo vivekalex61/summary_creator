@@ -58,6 +58,49 @@ T5 or Text-to-Text Transfer Transformer, is a Transformer based architecture tha
 
 3)Train model
 
+
+#### Evaluation Metrics 
+
+1)BLEU (bilingual evaluation understudy)
+Bleu measures precision: how much the words (and/or n-grams) in the machine generated summaries appeared in the human reference summaries.
+BLEU works by computing the precision — the fraction of tokens from the candidate that appear, or are “covered”, by the references— but with a twist. Like any precision-based metric, the value of the BLEU score is always a number between 0 (worst) and 1 (best). BLEU  penalizes words that appear in the candidate more times than it appears in any of the references.
+Eqtn:
+
+![alt text](https://raw.githubusercontent.com/vivekalex61/summary_creator/main/images/bleu_eqn.png)
+
+
+Total : It’s the number of words in the candidate.
+Covered : The total number of covered words.
+
+For each unique word w, the number of words in the candidate is D(w)(count of candidate word w in candidate sentence), but the coverage is limited by R(w). So if D(w)≤R(w)(count of candidate  word w in reference sentences), all D(w) words are covered. Otherwise only R(w) words are covered. The number of covered words for each unique word w can simply be written as MIN(R(w), D(w)) where MIN is the minimum of the two values.
+
+
+
+2)ROUGE:ROUGE stands for Recall-Oriented Understudy
+ Rouge measures recall: how much the words (and/or n-grams) in the human reference summaries appeared in the machine generated summari. We can compute the precision and recall using the overlap.
+
+Recall (in the context of ROUGE) refers to how much of the reference summary the system summary is recovering or capturing. If we are just considering the individual words, it can be computed as:
+![alt text](https://raw.githubusercontent.com/vivekalex61/summary_creator/main/images/recall.png)
+
+
+In terms of precision, what you are essentially measuring is, how much of the system summary was in fact relevant or needed? Precision is measured as:
+
+![alt text](https://raw.githubusercontent.com/vivekalex61/summary_creator/main/images/precision.png)
+
+
+ROUGE-N, ROUGE-S, and ROUGE-L can be thought of as the granularity of texts being compared between the system summaries and reference summaries.
+
+ROUGE-N — measures unigram, bigram, trigram and higher order n-gram overlap
+
+ROUGE-L — measures longest matching sequence of words using LCS. An advantage of using LCS is that it does not require consecutive matches but in-sequence matches that reflect sentence level word order. Since it automatically includes longest in-sequence common n-grams, you don’t need a predefined n-gram length.
+
+ROUGE-S — Is any pair of words in a sentence in order, allowing for arbitrary gaps. This can also be called skip-gram concurrence. For example, skip-bigram measures the overlap of word pairs that can have a maximum of two gaps in between words. As an example, for the phrase “cat in the hat” the skip-bigrams would be “cat in, cat the, cat hat, in the, in hat, the hat”.
+
+could use the F1 measure to make the metrics work together: F1 = 2 * (Bleu * Rouge) / (Bleu + Rouge)
+
+ref : https://towardsdatascience.com/nlp-metrics-made-simple-the-bleu-score-b06b14fbdbc1 , https://www.freecodecamp.org/news/what-is-rouge-and-how-it-works-for-evaluation-of-summaries-e059fb8ac840/ , https://stackoverflow.com/questions/9879276/how-do-i-evaluate-a-text-summarization-tool
+
+
 #### Deployment
 
 1)The model is deployed as web application using FLASK
@@ -68,7 +111,6 @@ T5 or Text-to-Text Transfer Transformer, is a Transformer based architecture tha
 ## Results
 
 Below are the results  got from trained transformer.
-
 
 
 ![alt text](https://raw.githubusercontent.com/vivekalex61/summary_creator/main/images/pred1.png)
